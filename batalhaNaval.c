@@ -32,6 +32,17 @@ int main() {
         tabuleiro[i][coluna_vertical] = 3;
     }
 
+    // Posiciona navio na diagonal principal (↘)
+    for (int i = 4; i <= 6; i++) {
+        tabuleiro[i][i + 1] = 3; // i + "número" para mover para coluna desejada
+    }
+
+    // Posiciona navio na diagonal secundária (↙)
+    for (int i = 3; i <= 5; i++) {
+        int j = 5 - i;  // "numero" - i para mover para a coluna desejada no sentido pretendido
+        tabuleiro[i][j] = 3;
+    }
+
     printf("          BATALHA NAVAL\n");
 
     // Imprime cabeçalho das colunas (A até J)
