@@ -1,15 +1,24 @@
 #include <stdio.h>
 
-// Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
+// Função para fazer ataque em cruz
+void ataqueCruz(int tabuleiro[10][10], int x, int y) {
+    if (x >= 0 && x < 10 && y >= 0 && y < 10)
+        tabuleiro[x][y] = 5; // centro
+
+    if (x-1 >= 0)
+        tabuleiro[x-1][y] = 5; // cima
+
+    if (x+1 < 10)
+        tabuleiro[x+1][y] = 5; // baixo
+
+    if (y-1 >= 0)
+        tabuleiro[x][y-1] = 5; // esquerda
+
+    if (y+1 < 10)
+        tabuleiro[x][y+1] = 5; // direita
+}
 
 int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
-
     
     int tabuleiro[10][10];
 
@@ -33,7 +42,7 @@ int main() {
     }
 
     // Posiciona navio na diagonal principal (↘)
-    for (int i = 4; i <= 6; i++) {
+    for (int i = 5; i <= 7; i++) {
         tabuleiro[i][i + 1] = 3; // i + "número" para mover para coluna desejada
     }
 
@@ -42,6 +51,24 @@ int main() {
         int j = 5 - i;  // "numero" - i para mover para a coluna desejada no sentido pretendido
         tabuleiro[i][j] = 3;
     }
+
+    ataqueCruz(tabuleiro, 4, 3);
+
+     // Posição inicial do ataque (topo da pirâmide)
+     int x = 7; // linha
+     int y = 5; // coluna
+     int altura = 3; // número de linhas da pirâmide
+ 
+     // Atacando em triângulo
+     for (int i = 0; i < altura; i++) {         // para cada linha da pirâmide
+         for (int j = -i; j <= i; j++) {         // para cada coluna naquela linha
+             int linha = x + i;
+             int coluna = y + j;
+             if (linha >= 0 && linha < 10 && coluna >= 0 && coluna < 10) {
+                 tabuleiro[linha][coluna] = 5;
+             }
+         }
+     }
 
     printf("          BATALHA NAVAL\n");
 
@@ -61,8 +88,16 @@ int main() {
         printf("\n");
     }
 
-    
+    return 0;
+}
+    // Desafio Batalha Naval - MateCheck
+    // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
+    // Siga os comentários para implementar cada parte do desafio.
 
+    // Nível Novato - Posicionamento dos Navios
+    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
+    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
+    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
 
     // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
     // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
@@ -89,6 +124,3 @@ int main() {
     // 0 0 1 0 0
     // 1 1 1 1 1
     // 0 0 1 0 0
-
-    return 0;
-}
