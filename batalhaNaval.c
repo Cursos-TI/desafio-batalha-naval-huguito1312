@@ -77,9 +77,9 @@ int main() {
     // Atacando em losango
     for (int dx = -raio; dx <= raio; dx++) {
         
-        int largura = raio - abs(dx);  // quanto mais longe do centro, menor a largura
+        int largura = raio - abs(dx);  // Gera o preenchimento do losango na vertical, linha por linha. Quanto mais longe do centro, menor a largura
 
-        for (int dy = -largura; dy <= largura; dy++) {
+        for (int dy = -largura; dy <= largura; dy++) { // Deslocamento na horizontal (esquerda e direita). 
             int linha = x_losango + dx;
             int coluna = y_losango + dy;
 
