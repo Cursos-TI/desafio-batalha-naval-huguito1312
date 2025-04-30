@@ -70,6 +70,26 @@ int main() {
          }
      }
 
+    int x_losango = 2; // linha central do ataque
+    int y_losango = 6; // coluna central do ataque
+    int raio = 2;      // tamanho do losango (número de linhas até o topo/borda)
+
+    // Atacando em losango
+    for (int dx = -raio; dx <= raio; dx++) {
+        
+        int largura = raio - abs(dx);  // quanto mais longe do centro, menor a largura
+
+        for (int dy = -largura; dy <= largura; dy++) {
+            int linha = x_losango + dx;
+            int coluna = y_losango + dy;
+
+            // Verifica se a posição está dentro do tabuleiro
+            if (linha >= 0 && linha < 10 && coluna >= 0 && coluna < 10) {
+                tabuleiro[linha][coluna] = 5; // marca o ataque
+            }
+        }
+    }
+
     printf("          BATALHA NAVAL\n");
 
     // Imprime cabeçalho das colunas (A até J)
